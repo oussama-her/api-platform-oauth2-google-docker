@@ -1,0 +1,32 @@
+api_platform:
+    title: Hello API Platform
+    version: 1.0.0
+    # Good cache defaults for REST APIs
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']
+
+    oauth:
+        enabled: true
+        clientId: '%env(OAUTH_GOOGLE_ID)%'
+        clientSecret: '%env(OAUTH_GOOGLE_SECRET)%'
+        type: 'oauth2'
+        # The oauth flow grant type.
+        flow: 'authorizationCode'
+        # The oauth authentication url.
+        authorizationUrl: 'https://accounts.google.com/o/oauth2/auth'
+        # The oauth token url.
+        tokenUrl: 'https://oauth2.googleapis.com/token'
+        # The oauth scopes.
+        scopes:
+            email: 'Allow to retrieve user email'
+
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+
+    elasticsearch:
+        hosts: ['%env(ELASTICSEARCH_HOST)%']
+        mapping:
+            App\Entity\Product:
+                index: product

@@ -1,0 +1,5 @@
+{
+    "require": {
+        "league/oauth2-server-bundle": "^0.4.1"
+    }
+}
